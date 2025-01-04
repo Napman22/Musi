@@ -65,7 +65,7 @@ const GENRES = [
   const userMap = {};
 
   //generates 100 users for the userMap
-  for (let i = 1; i <= 100; i++) {
+  for (let i = 1; i <= 1000; i++) {
     const userId = `user${i}`;
     userMap[userId] = {
       genres: getRandomSubset(GENRES, 3),   

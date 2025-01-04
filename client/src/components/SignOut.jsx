@@ -1,6 +1,6 @@
 import React from "react";
 import { signOut } from "firebase/auth";
-import { auth } from "/Users/tuckeranderson-sanford/Documents/testingReact/Musi/client/src/lib/firebaseConfig"; // your config file
+import { auth } from "../lib/firebaseConfig"; // your config file
 
 function SignOut({ onSignOutSuccess }) {
   const handleSignOut = async () => {

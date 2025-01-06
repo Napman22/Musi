@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../lib/firebaseConfig"; // your config file
+import { auth } from "../../lib/firebaseConfig"; // your config file
 
 function SignUp({ onSignUpSuccess }) {
   const [email, setEmail] = useState("");

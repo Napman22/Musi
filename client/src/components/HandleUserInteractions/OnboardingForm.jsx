@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
-import { auth } from "../lib/firebaseConfig"; // your config file
+import { auth } from "../../lib/firebaseConfig"; // your config file
 
 function OnboardingForm({ onComplete }) {
   const [genres, setGenres] = useState(["", "", ""]);

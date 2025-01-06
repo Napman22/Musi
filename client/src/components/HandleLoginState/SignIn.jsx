@@ -1,7 +1,7 @@
 // SignIn.jsx
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../lib/firebaseConfig"; 
+import { auth } from "../../lib/firebaseConfig"; 
 
 function SignIn({ onSignInSuccess, onNavigateToSignUp }) {
   const [email, setEmail] = useState("");

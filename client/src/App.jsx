@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./lib/firebaseConfig";
-import SignUp from "./components/SignUp";
-import SignIn from "./components/SignIn";
-import SignOut from "./components/SignOut";
-import OnboardingForm from "./components/OnboardingForm";
-import MatchesPage from "./components/MatchesPage";
+import SignUp from "./components/HandleLoginState/SignUp";
+import SignIn from "./components/HandleLoginState/SignIn";
+import SignOut from "./components/HandleLoginState/SignOut";
+import OnboardingForm from "./components/HandleUserInteractions/OnboardingForm";
+import MatchesPage from "./components/HandleUserInteractions/MatchesPage";
 
 
 function App() {

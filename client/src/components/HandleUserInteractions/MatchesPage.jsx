@@ -19,9 +19,9 @@ function MatchesPage({ currentUser }) {
         });
         const data = await response.json();
 
-        // Transform data to an array of matches
+        // Transform data to an array of matches for the logged-in user
         if (typeof data === "object") {
-          const formattedMatches = data[currentUser.uid] || []; // Fetch matches for the logged-in user
+          const formattedMatches = data[currentUser.uid] || [];
           setMatches(formattedMatches);
         } else {
           console.error("Unexpected response format:", data);
@@ -33,6 +33,30 @@ function MatchesPage({ currentUser }) {
 
     fetchMatches();
   }, [currentUser]);
+
+  const sendInvite = async (matchedUserId) => {
+    try {
+      const token = await getIdToken(currentUser);
+      const response = await fetch("http://localhost:8080/send-invite", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        // IMPORTANT: use 'receiverId' here
+        body: JSON.stringify({ receiverId: matchedUserId }),
+      });
+
+      if (response.ok) {
+        alert("Invite sent!");
+      } else {
+        alert("Failed to send invite.");
+      }
+    } catch (error) {
+      console.error("Error sending invite:", error);
+      alert("Failed to send invite.");
+    }
+  };
 
   const handleNext = () => {
     if (currentIndex < matches.length - 1) {
@@ -55,7 +79,14 @@ function MatchesPage({ currentUser }) {
         <p>No matches found.</p>
       ) : (
         <>
-          <div style={{ position: "relative", height: "300px", overflow: "hidden", marginBottom: "2rem" }}>
+          <div
+            style={{
+              position: "relative",
+              height: "300px",
+              overflow: "hidden",
+              marginBottom: "2rem",
+            }}
+          >
             <AnimatePresence>
               {currentMatch && (
                 <motion.div
@@ -98,6 +129,20 @@ function MatchesPage({ currentUser }) {
                       ? currentMatch.songs.join(", ")
                       : "None provided"}
                   </p>
+                  <button
+                    onClick={() => sendInvite(currentMatch.id)}
+                    style={{
+                      marginTop: "1rem",
+                      padding: "0.5rem 1rem",
+                      backgroundColor: "#007bff",
+                      color: "#fff",
+                      border: "none",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Send Invite
+                  </button>
                 </motion.div>
               )}
             </AnimatePresence>
